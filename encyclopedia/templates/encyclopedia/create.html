@@ -1,0 +1,19 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+Wiki Create
+{% endblock title %}
+
+{% block body %}
+    {% if message %}
+        <h1 class="text-danger">Title "{{title}}" already in use. Try another.</h1>
+    {%endif%}
+    <h1>Create Article</h1>
+    <h2>Format used is markdown, check this <a href="https://www.markdownguide.org/">guide</a></h2>
+    <form action="{% url 'create'%}" method="post" style="display:flex; flex-direction: column;">
+        {% csrf_token %}
+        {{ createArticleForm }}<br>
+        <input type="submit" value="Save article" style="width:100px">
+    </form>
+
+{% endblock %}

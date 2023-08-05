@@ -1,0 +1,18 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title%}
+Wiki Edit {{title}}
+{% endblock %}
+
+{% block body %}
+    {% if message %}
+        <h1 class="text-danger">There is already an article with this title: {{ edited_article_title }}</h1>
+    {%endif%}
+    <h1>Edit article</h1>
+    <form action="{% url 'edit' title %}" method="POST" style="display:flex; flex-direction: column;">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Save article" style="width:100px">
+    </form>
+
+{% endblock%}
